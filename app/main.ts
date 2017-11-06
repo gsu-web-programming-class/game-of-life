@@ -1,3 +1,11 @@
+/*
+ * Make ALL js related changes in a .ts file, it gives extra features and is compiled down to a .js file. The .js files *ARE GENERATED* So
+ * don't modify the .js files, as your changes *WILL BE LOST* :P
+ *
+ * Let me know if you have ANY questions or would rather do something else! :)
+ */
+
+
 const step = 10;
 
 let W: number, H: number;
