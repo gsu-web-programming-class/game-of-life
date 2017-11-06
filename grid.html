@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script type="text/javascript" src="grid.js"></script>
+    <script type="text/javascript" src="grid.js" ></script >
 </head>
 <body>
-
 
 
 <!--
@@ -17,42 +16,41 @@
 <canvas id="grid"></canvas>
 
 <script>
-// function bull(v){
-// var currentVal = v;
-// alert(currentVal);
+    // function bull(v){
+    // var currentVal = v;
+    // alert(currentVal);
 
-var w = 1000;
-var h = 500;
-var step = 10;
-var canvasElementId = 'grid';
+    var w               = 1000;
+    var h               = 500;
+    var step            = 10;
+    var canvasElementId = "grid";
 
 
-var canvas = document.getElementById(canvasElementId);
-canvas.width  = w;
-canvas.height = h;
+    var canvas    = document.getElementById(canvasElementId);
+    canvas.width  = w;
+    canvas.height = h;
 
-var ctx = canvas.getContext('2d');
-var drawGrid = function(ctx, w, h, step) {
-    ctx.beginPath();
-    for (var x=0;x<=w;x+=step) {
+    var ctx      = canvas.getContext("2d");
+    var drawGrid = function ( ctx, w, h, step ) {
+        ctx.beginPath();
+        for ( var x = 0; x <= w; x += step ) {
             ctx.moveTo(x, 0);
             ctx.lineTo(x, h);
-    }
-    ctx.strokeStyle = 'rgb(20,20,20)';
-    ctx.lineWidth = 2;
-    ctx.stroke();
-    ctx.beginPath();
-    for (var y=0;y<=h;y+=step) {
+        }
+        ctx.strokeStyle = "rgb(20,20,20)";
+        ctx.lineWidth   = 2;
+        ctx.stroke();
+        ctx.beginPath();
+        for ( var y = 0; y <= h; y += step ) {
             ctx.moveTo(0, y);
             ctx.lineTo(w, y);
-    }
-    ctx.strokeStyle = 'rgb(20,20,20)';
-    ctx.lineWidth = 2;
-    ctx.stroke();
-}
+        }
+        ctx.strokeStyle = "rgb(20,20,20)";
+        ctx.lineWidth   = 2;
+        ctx.stroke();
+    };
 
-drawGrid(ctx, w, h, step);
-
+    drawGrid(ctx, w, h, step);
 
 
 </script>

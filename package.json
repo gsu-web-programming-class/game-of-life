@@ -1,0 +1,22 @@
+{
+  "name"         : "game-of-life",
+  "version"      : "0.0.1",
+  "license"      : "",
+  "repository"   : "https://github.com/gsu-web-programming-class/game-of-life.git",
+  "contributors" : [
+    "Hamel Patel",
+    "Joana Ibarra",
+    "Joshua King"
+  ],
+  "eslintConfig" : {
+    "rules" : {
+      "accessor-pairs" : "warn",
+      "vars-on-top"    : "warn",
+      "camelcase"      : "error"
+    }
+  },
+  "dependencies" : {
+    "jquery" : "^3.2.1",
+    "moment" : "^2.19.1"
+  }
+}
