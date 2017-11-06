@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html >
+<head >
+    <script type="text/javascript" src="grid.js" ></script >
+</head >
+<body >
+
+
+    <!--
+    <form>
+    <input type="range" name="foo" min="1" max="20" style="width: 100px;">
+    <output for="foo" onforminput="value = foo.valueAsNumber;"></output>
+    </form> -->
+
+    <!-- <input type="range" id="myRange" value="1" min="1" max="10"> -->
+    <canvas id="grid" ></canvas >
+
+    <script >
+        // function bull(v){
+        // var currentVal = v;
+        // alert(currentVal);
+
+        var w               = 1000;
+        var h               = 500;
+        var step            = 10;
+        var canvasElementId = "grid";
+
+
+        var canvas    = document.getElementById(canvasElementId);
+        canvas.width  = w;
+        canvas.height = h;
+
+        var ctx      = canvas.getContext("2d");
+        var drawGrid = function ( ctx, w, h, step ) {
+            ctx.beginPath();
+            for ( var x = 0; x <= w; x += step ) {
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, h);
+            }
+            ctx.strokeStyle = "rgb(20,20,20)";
+            ctx.lineWidth   = 2;
+            ctx.stroke();
+            ctx.beginPath();
+            for ( var y = 0; y <= h; y += step ) {
+                ctx.moveTo(0, y);
+                ctx.lineTo(w, y);
+            }
+            ctx.strokeStyle = "rgb(20,20,20)";
+            ctx.lineWidth   = 2;
+            ctx.stroke();
+        };
+
+        drawGrid(ctx, w, h, step);
+
+
+    </script >
+    <!-- <script>
+    function modifyOffset() {
+        var el, newPoint, newPlace, offset, siblings, k;
+        width    = this.offsetWidth;
+        newPoint = (this.value - this.getAttribute("min")) / (this.getAttribute("max") - this.getAttribute("min"));
+        offset   = -1;
+        if (newPoint < 0) { newPlace = 0;  }
+        else if (newPoint > 1) { newPlace = width; }
+        else { newPlace = width * newPoint + offset; offset -= newPoint;}
+        siblings = this.parentNode.childNodes;
+        for (var i = 0; i < siblings.length; i++) {
+            sibling = siblings[i];
+            if (sibling.id == this.id) { k = true; }
+            if ((k == true) && (sibling.nodeName == "OUTPUT")) {
+                outputTag = sibling;
+            }
+        }
+        outputTag.style.left       = newPlace + "px";
+        outputTag.style.marginLeft = offset + "%";
+        outputTag.innerHTML        =   this.value;
+      var ed= this.value;
+
+    }
+    function modifyInputs() {
+        var inputs = document.getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].getAttribute("type") == "range") {
+                inputs[i].onchange = modifyOffset;
+                if ("fireEvent" in inputs[i]) {
+                    inputs[i].fireEvent("onchange");
+                } else {
+                    var evt = document.createEvent("HTMLEvents");
+                    evt.initEvent("change", false, true);
+                    inputs[i].dispatchEvent(evt);
+                }
+            }
+        }
+    }
+
+    modifyInputs();
+
+
+    </script> -->
+</body >
+</html >

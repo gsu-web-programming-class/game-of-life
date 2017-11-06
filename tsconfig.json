@@ -1,0 +1,13 @@
+{
+  "compilerOptions" : {
+    "module"    : "commonjs",
+    "target"    : "es5",
+    "sourceMap" : true
+  },
+  "typeAcquisition" : {
+    "enable" : true
+  },
+  "exclude"         : [
+    "node_modules"
+  ]
+}

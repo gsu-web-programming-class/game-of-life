@@ -9,11 +9,7 @@
     "Joshua King"
   ],
   "eslintConfig" : {
-    "rules" : {
-      "accessor-pairs" : "warn",
-      "vars-on-top"    : "warn",
-      "camelcase"      : "error"
-    }
+    "extends" : "tslint.json"
   },
   "dependencies" : {
     "jquery" : "^3.2.1",

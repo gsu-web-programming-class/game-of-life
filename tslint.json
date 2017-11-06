@@ -1,0 +1,7 @@
+{
+  "rules" : {
+    "accessor-pairs" : "warn",
+    "vars-on-top"    : "warn",
+    "camelcase"      : "error"
+  }
+}
