@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectTasksOptions">
+    <TaskOptions isEnabled="false">
+      <option name="arguments" value="$FilePath$ --presets env" />
+      <option name="checkSyntaxErrors" value="true" />
+      <option name="description" />
+      <option name="exitCodeBehavior" value="ALWAYS" />
+      <option name="fileExtension" value="js" />
+      <option name="immediateSync" value="true" />
+      <option name="name" value="Babel" />
+      <option name="output" value="$ProjectFileDir$/app/out/$FileNameWithoutExtension$.js" />
+      <option name="outputFilters">
+        <array />
+      </option>
+      <option name="outputFromStdout" value="true" />
+      <option name="program" value="$PROJECT_DIR$/node_modules/babel-cli/bin/babel.js" />
+      <option name="scopeName" value="intermediate" />
+      <option name="trackOnlyRoot" value="false" />
+      <option name="workingDir" value="$FileDir$" />
+      <envs />
+    </TaskOptions>
+    <TaskOptions isEnabled="true">
+      <option name="arguments" value="--config webpack.config.js" />
+      <option name="checkSyntaxErrors" value="true" />
+      <option name="description" />
+      <option name="exitCodeBehavior" value="ERROR" />
+      <option name="fileExtension" value="ts" />
+      <option name="immediateSync" value="true" />
+      <option name="name" value="Webpack" />
+      <option name="output" value="" />
+      <option name="outputFilters">
+        <array />
+      </option>
+      <option name="outputFromStdout" value="false" />
+      <option name="program" value="$PROJECT_DIR$/node_modules/.bin/webpack" />
+      <option name="scopeName" value="Project Files" />
+      <option name="trackOnlyRoot" value="false" />
+      <option name="workingDir" value="$ProjectFileDir$" />
+      <envs />
+    </TaskOptions>
+  </component>
+</project>
