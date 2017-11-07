@@ -9,7 +9,7 @@
 import { Cell } from "./Cell";
 import { Grid } from "./Grid";
 
-const MAX_SIZE  = 2001;
+const MAX_SIZE  = 2000;
 const CELL_SIZE = 10;
 const MAX_CELLS = MAX_SIZE / CELL_SIZE;
 
