@@ -44,10 +44,6 @@ export class Grid {
     public setCanvas( canvas: HTMLCanvasElement ) {
         this._canvas = canvas;
         this._ctx    = canvas.getContext("2d");
-
-        // @hpatel: I made color changes, feel free to revert that. Just thought it looked better? Remove this once you see it
-        this._ctx.strokeStyle = "#D7D7D7";
-        this._ctx.fillStyle   = "#3ACDAB";
     }
 
 
@@ -75,6 +71,10 @@ export class Grid {
 
     private clearRect() {
         this._ctx.clearRect(0, 0, this._width, this._height);
+
+        // @hpatel: I made color changes, feel free to revert that. Just thought it looked better? Remove this once you see it
+        this._ctx.strokeStyle = "#D7D7D7";
+        this._ctx.fillStyle   = "#3ACDAB";
     }
 
 
