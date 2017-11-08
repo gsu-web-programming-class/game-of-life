@@ -15,8 +15,6 @@ const MAX_CELLS = MAX_SIZE / CELL_SIZE;
 
 let W: number, H: number;
 let CELLS_X: number, CELLS_Y: number;
-// let canvas: HTMLCanvasElement;
-// let ctx: CanvasRenderingContext2D;
 const grid: Grid = new Grid(MAX_CELLS, CELL_SIZE);
 
 
@@ -46,11 +44,6 @@ window.onload = () => {
 };
 
 
-function updateCells() {
-
-}
-
-
 function initCells() {
     grid.clear();
 
@@ -62,7 +55,7 @@ function initCells() {
         Cell.of(35, 3), Cell.of(35, 4), Cell.of(36, 3), Cell.of(36, 4),
     ].forEach(cell => grid.revive(cell));
 
-    updateCells();
+    grid.step();
 }
 
 

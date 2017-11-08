@@ -7,7 +7,6 @@ export class Grid {
     private _cellSize: number;
     private _height: number;
     private _maxCells: number;
-    private _canvas: HTMLCanvasElement;
     private _ctx: CanvasRenderingContext2D;
     private _width: number;
 
@@ -15,6 +14,14 @@ export class Grid {
     constructor( maxCells: number, cellSize: number ) {
         this._maxCells = maxCells;
         this._cellSize = cellSize;
+    }
+
+
+    private _canvas: HTMLCanvasElement;
+
+
+    get canvas(): HTMLCanvasElement {
+        return this._canvas;
     }
 
 
@@ -57,6 +64,35 @@ export class Grid {
         this.clearRect();
         this.drawGrid();
         this.drawCells();
+    }
+
+
+    public step() {
+        let grid = this;
+
+
+        function _countNeighbours( cell: Cell ) {
+            let amount = 0;
+
+
+            function _isFilled( cell: Cell ) {
+                return grid._cells.indexOf(cell) >= 0;
+            }
+
+
+            for ( let i = -1; i <= 1; i++ ) {
+                cell.x += i;
+                for ( let j = -1; j <= 1; j++ ) {
+                    cell.y += j;
+                    if ( _isFilled(cell) ) { amount++; }
+                    if ( amount > 3 ) { break; }
+                }
+            }
+
+            return amount;
+        }
+
+
     }
 
 
