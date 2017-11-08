@@ -8,6 +8,7 @@
 
 import { Grid } from "./Grid";
 import { Patterns } from "./Patterns";
+import {Cell} from "./Cell";
 
 const MAX_SIZE  = 2000;
 const CELL_SIZE = 10;
@@ -16,6 +17,7 @@ const MAX_CELLS = MAX_SIZE / CELL_SIZE;
 let W: number, H: number;
 let CELLS_X: number, CELLS_Y: number;
 const grid: Grid = new Grid(MAX_CELLS, CELL_SIZE);
+let mx: number, my: number, gx: number, gy: number;
 
 
 function refreshSize() {
@@ -61,6 +63,20 @@ window.onload = () => {
 
     grid.canvas.onclick                          = () => {
         grid.step();
+        mx = e.offsetX;
+        my = e.offsetY;
+
+        gx = Math.round(mx / CELL_SIZE); //*10;
+        gy = Math.round(my / CELL_SIZE); //*10;
+
+        //if press an alive cell, kill it
+        if(grid.isAlive(Cell.of(gx, gy))) {
+            grid.kill(Cell.of(gx, gy));
+
+            //else revive or bring to life
+        } else {
+            grid.revive(Cell.of(gx, gy));
+        }
     };
     document.getElementById("resetBtn").onclick  = () => {
         gameStop();
@@ -105,3 +121,25 @@ function initCells() {
 
     // Patterns.hBar(CELLS_X, CELLS_Y).forEach(cell => grid.revive(cell));
 }
+
+
+//use public .setCanvas instead?
+// grid.canvas.onclick = (function(e) {
+//
+//     //mouseclick position
+//     let mx = e.offsetX;
+//     let my = e.offsetY;
+//
+//     //calculate grid square numbers rounded to the nearest ten
+//     let gx = Math.round(mx / CELL_SIZE) *10;
+//     let gy = Math.round(my / CELL_SIZE) *10;
+//
+//     //if press an alive cell, kill it
+//     if(grid.isAlive(Cell.of(gx, gy))) {
+//         grid.kill(Cell.of(gx, gy));
+//
+//     //else revive or bring to life
+//     } else {
+//         grid.revive(Cell.of(gx, gy));
+//     }
+// });
