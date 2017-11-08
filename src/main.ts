@@ -8,6 +8,7 @@
 
 import { Grid } from "./Grid";
 import { Patterns } from "./Patterns";
+import { Cell } from "./Cell";
 
 const MAX_SIZE  = 2000;
 const CELL_SIZE = 10;
@@ -59,8 +60,27 @@ window.onload = () => {
 
     grid.setCanvas(document.querySelector("canvas"));
 
-    grid.canvas.onclick                          = () => {
-        grid.step();
+    grid.canvas.onclick                          = ( e ) => {
+        //mouseclick position
+        const mx = e.offsetX;
+        const my = e.offsetY;
+
+        //calculate grid square numbers rounded to the nearest ten
+        const gx = Math.floor(mx / CELL_SIZE); //*10;
+        const gy = Math.floor(my / CELL_SIZE); //*10;
+
+        const cell = Cell.of(gx, gy);
+
+        //if press an alive cell, kill it
+        if ( grid.isAlive(cell) ) {
+            grid.kill(cell);
+            grid.draw();
+        }
+        //else revive or bring to life
+        else {
+            grid.revive(cell);
+            grid.draw();
+        }
     };
     document.getElementById("resetBtn").onclick  = () => {
         gameStop();
