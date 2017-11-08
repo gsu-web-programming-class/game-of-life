@@ -32,7 +32,7 @@ function refreshSize() {
 
 window.onresize = () => {
     refreshSize();
-    this.drawGrid();
+    grid.draw();
 };
 
 
@@ -55,17 +55,34 @@ function gameStop() {
 
 
 window.onload = () => {
+    window.resizeTo(766, 502);
+
     grid.setCanvas(document.querySelector("canvas"));
 
-    grid.canvas.onclick                         = () => {
+    grid.canvas.onclick                          = () => {
         grid.step();
     };
-    document.getElementById("clearBtn").onclick = () => {
+    document.getElementById("resetBtn").onclick  = () => {
+        gameStop();
+        initCells();
+        grid.draw();
+    };
+    document.getElementById("step23Btn").onclick = () => {
+        gameStop();
+        for ( let i = 0; i < 23; i++ ) {
+            grid.step(false);
+        }
+        grid.draw();
+    };
+    document.getElementById("stepBtn").onclick   = () => {
+        gameStop();
+        grid.step();
+    };
+    document.getElementById("clearBtn").onclick  = () => {
         grid.clear();
         grid.draw();
         gameStop();
     };
-
     document.getElementById("playPause").onclick = () => {
         if ( grid.isPlaying ) {
             gameStop();
@@ -84,8 +101,6 @@ window.onload = () => {
 function initCells() {
     grid.clear();
 
-    // 766px X 502px
-    // 879px X 659px
     Patterns.getGliderGuns(CELLS_X, CELLS_Y).forEach(cell => grid.revive(cell));
 
     // Patterns.hBar(CELLS_X, CELLS_Y).forEach(cell => grid.revive(cell));

@@ -92,7 +92,7 @@ export class Grid {
     }
 
 
-    public step() {
+    public step( callDrawWhenDone = true ) {
 
 
         let grid = this;
@@ -169,7 +169,9 @@ export class Grid {
         for ( const key in newCells ) {
             this.revive(Cell.fromKey(key));
         }
-        this.draw();
+        if ( callDrawWhenDone ) {
+            this.draw();
+        }
 
         if ( this._isPlaying ) {
             window.requestAnimationFrame(() => grid.step());

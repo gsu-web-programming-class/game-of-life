@@ -44,10 +44,26 @@
     <!-- <input type="range" id="myRange" value="1" min="1" max="10"> -->
     <canvas ></canvas >
     <div id="controls" >
+        <button id="resetBtn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" >
+            <i class="material-icons" >restore</i >
+        </button >
+        <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="resetBtn" >
+            Restore all life
+            <br >
+            to original state
+        </div >
         <button id="clearBtn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" >
             <i class="material-icons" >layers_clear</i >
         </button >
         <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="clearBtn" >Clear all life</div >
+        <button id="step23Btn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" >
+            <i class="material-icons" >fast_forward</i >
+        </button >
+        <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="step23Btn" >Step 23</div >
+        <button id="stepBtn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" >
+            <i class="material-icons" >skip_next</i >
+        </button >
+        <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="stepBtn" >Step 1</div >
         <button id="playPause" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--primary" >
             <i hidden id="play-icon" class="material-icons" >play_arrow</i >
             <i id="pause-icon" class="material-icons" >pause</i >
