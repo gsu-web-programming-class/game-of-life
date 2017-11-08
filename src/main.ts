@@ -125,25 +125,3 @@ function initCells() {
 
     // Patterns.hBar(CELLS_X, CELLS_Y).forEach(cell => grid.revive(cell));
 }
-
-
-//use public .setCanvas instead?
-// grid.canvas.onclick = (function(e) {
-//
-//     //mouseclick position
-//     let mx = e.offsetX;
-//     let my = e.offsetY;
-//
-//     //calculate grid square numbers rounded to the nearest ten
-//     let gx = Math.round(mx / CELL_SIZE) *10;
-//     let gy = Math.round(my / CELL_SIZE) *10;
-//
-//     //if press an alive cell, kill it
-//     if(grid.isAlive(Cell.of(gx, gy))) {
-//         grid.kill(Cell.of(gx, gy));
-//
-//     //else revive or bring to life
-//     } else {
-//         grid.revive(Cell.of(gx, gy));
-//     }
-// });
