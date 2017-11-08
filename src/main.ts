@@ -8,7 +8,7 @@
 
 import { Grid } from "./Grid";
 import { Patterns } from "./Patterns";
-import {Cell} from "./Cell";
+import { Cell } from "./Cell";
 
 const MAX_SIZE  = 2000;
 const CELL_SIZE = 10;
@@ -62,7 +62,6 @@ window.onload = () => {
     grid.setCanvas(document.querySelector("canvas"));
 
     grid.canvas.onclick                          = (e) => {
-        grid.step();
         //mouseclick position
         mx = e.offsetX;
         my = e.offsetY;
