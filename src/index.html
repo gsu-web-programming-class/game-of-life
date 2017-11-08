@@ -23,11 +23,24 @@
             position: absolute;
             right: 20px;
             bottom: 20px;
+            width: 200px;
+            text-align: center;
         }
 
         #controls button {
             display: inline-block;
             margin: 10px;
+            transition: all 250ms ease;
+        }
+
+        #controls:hover button:not(#playPause) {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        #controls button:not(#playPause) {
+            opacity: 0;
+            transform: scale(0);
         }
 
     </style >
@@ -52,10 +65,6 @@
             <br >
             to original state
         </div >
-        <button id="clearBtn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" >
-            <i class="material-icons" >layers_clear</i >
-        </button >
-        <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="clearBtn" >Clear all life</div >
         <button id="step23Btn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" >
             <i class="material-icons" >fast_forward</i >
         </button >
@@ -64,6 +73,10 @@
             <i class="material-icons" >skip_next</i >
         </button >
         <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="stepBtn" >Step 1</div >
+        <button id="clearBtn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" >
+            <i class="material-icons" >layers_clear</i >
+        </button >
+        <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="clearBtn" >Clear all life</div >
         <button id="playPause" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--primary" >
             <i hidden id="play-icon" class="material-icons" >play_arrow</i >
             <i id="pause-icon" class="material-icons" >pause</i >
