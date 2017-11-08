@@ -6,8 +6,8 @@
  */
 
 
-import { Cell } from "./Cell";
 import { Grid } from "./Grid";
+import { Patterns } from "./Patterns";
 
 const MAX_SIZE  = 2000;
 const CELL_SIZE = 10;
@@ -16,6 +16,8 @@ const MAX_CELLS = MAX_SIZE / CELL_SIZE;
 let W: number, H: number;
 let CELLS_X: number, CELLS_Y: number;
 const grid: Grid = new Grid(MAX_CELLS, CELL_SIZE);
+let startStopBtn: HTMLButtonElement;
+let clearBtn: HTMLButtonElement;
 
 
 function refreshSize() {
@@ -25,40 +27,68 @@ function refreshSize() {
 
     grid.setSize(W, H);
 
-    CELLS_X = W / CELL_SIZE;
-    CELLS_Y = H / CELL_SIZE;
+    CELLS_X = Math.round(W / CELL_SIZE);
+    CELLS_Y = Math.round(H / CELL_SIZE);
 }
 
 
 window.onresize = () => {
     refreshSize();
-    drawGrid();
+    this.drawGrid();
 };
+
+
+function gameStart() {
+    grid.start();
+    document.querySelector("#play-icon").setAttribute("hidden", null);
+    document.querySelector("#pause-icon").removeAttribute("hidden");
+    const playPauseLabel: HTMLElement = document.getElementById("playPauseLabel");
+    playPauseLabel.innerText          = "Pause";
+}
+
+
+function gameStop() {
+    grid.stop();
+    document.querySelector("#pause-icon").setAttribute("hidden", null);
+    document.querySelector("#play-icon").removeAttribute("hidden");
+    const playPauseLabel: HTMLElement = document.getElementById("playPauseLabel");
+    playPauseLabel.innerText          = "Play";
+}
+
 
 window.onload = () => {
     grid.setCanvas(document.querySelector("canvas"));
 
+    grid.canvas.onclick   = () => grid.step();
+    this.clearBtn         = document.querySelector("#clearBtn");
+    this.clearBtn.onclick = () => {
+        grid.clear();
+        grid.draw();
+        gameStop();
+    };
+
+    this.startStopBtn         = document.querySelector("#playPause");
+    this.startStopBtn.onclick = () => {
+        if ( grid.isPlaying ) {
+            gameStop();
+        } else {
+            gameStart();
+        }
+    };
+
     refreshSize();
     initCells();
-    drawGrid();
+    grid.draw();
+    gameStop();
 };
 
 
 function initCells() {
     grid.clear();
 
-    [
-        Cell.of(1, 5), Cell.of(1, 6), Cell.of(2, 5), Cell.of(2, 6), Cell.of(11, 5), Cell.of(11, 6), Cell.of(11, 7), Cell.of(12, 4),
-        Cell.of(12, 8), Cell.of(13, 3), Cell.of(13, 9), Cell.of(14, 3), Cell.of(14, 9), Cell.of(15, 6), Cell.of(16, 4), Cell.of(16, 8),
-        Cell.of(17, 5), Cell.of(17, 6), Cell.of(17, 7), Cell.of(18, 6), Cell.of(21, 3), Cell.of(21, 4), Cell.of(21, 5), Cell.of(22, 3),
-        Cell.of(22, 4), Cell.of(22, 5), Cell.of(23, 2), Cell.of(23, 6), Cell.of(25, 1), Cell.of(25, 2), Cell.of(25, 6), Cell.of(25, 7),
-        Cell.of(35, 3), Cell.of(35, 4), Cell.of(36, 3), Cell.of(36, 4),
-    ].forEach(cell => grid.revive(cell));
+    // 766px X 502px
+    // 879px X 659px
+    Patterns.getGliderGuns(CELLS_X, CELLS_Y).forEach(cell => grid.revive(cell));
 
-    grid.step();
-}
-
-
-function drawGrid() {
-    grid.draw();
+    // Patterns.hBar(CELLS_X, CELLS_Y).forEach(cell => grid.revive(cell));
 }

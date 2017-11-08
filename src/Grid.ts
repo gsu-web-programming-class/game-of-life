@@ -7,12 +7,22 @@ export class Grid {
     private _cellSize: number;
     private _height: number;
     private _maxCells: number;
+    private _cellsX: number;
+    private _cellsY: number;
     private _width: number;
 
 
     constructor( maxCells: number, cellSize: number ) {
         this._maxCells = maxCells;
         this._cellSize = cellSize;
+    }
+
+
+    private _isPlaying: boolean;
+
+
+    get isPlaying(): boolean {
+        return this._isPlaying;
     }
 
 
@@ -64,6 +74,9 @@ export class Grid {
     public setSize( width: number, height: number ) {
         this._canvas.width = this._width = width;
         this._canvas.height = this._height = height;
+
+        this._cellsX = Math.round(this._width / this._cellSize);
+        this._cellsY = Math.round(this._height / this._cellSize);
     }
 
 
@@ -74,24 +87,49 @@ export class Grid {
     }
 
 
+    public isAlive( cell: Cell ) {
+        return this._cells.filter(c => c.asKey() == cell.asKey()).length > 0;
+    }
+
+
     public step() {
+
+
         let grid = this;
 
 
-        function _countNeighbours( cell: Cell ) {
-            let amount = 0;
-
-
-            function _isFilled( cell: Cell ) {
-                return grid._cells.indexOf(cell) >= 0;
-            }
-
+        function _getNeighbors( cell: Cell ) {
+            let neighbors: Cell[] = [];
+            let x                 = cell.x;
+            let y                 = cell.y;
 
             for ( let i = -1; i <= 1; i++ ) {
-                cell.x += i;
+                x = cell.x + i;
                 for ( let j = -1; j <= 1; j++ ) {
-                    cell.y += j;
-                    if ( _isFilled(cell) ) { amount++; }
+                    y = cell.y + j;
+                    neighbors.push(Cell.of(x, y));
+                }
+            }
+
+            return neighbors;
+        }
+
+
+        function _numOfNeighbors( cell: Cell ) {
+            let amount = 0;
+            let x      = cell.x;
+            let y      = cell.y;
+
+            for ( let i = -1; i <= 1; i++ ) {
+                x = cell.x + i;
+                for ( let j = -1; j <= 1; j++ ) {
+                    y = cell.y + j;
+
+                    if ( i === 0 && j === 0 ) {
+                        continue;
+                    }
+
+                    if ( grid.isAlive(Cell.of(x, y)) ) { amount++; }
                     if ( amount > 3 ) { break; }
                 }
             }
@@ -100,6 +138,53 @@ export class Grid {
         }
 
 
+        let newCells: { [key: string]: Cell }   = {};
+        let uniquefier: { [key: string]: Cell } = {};
+
+        this._cells.map(cell => _getNeighbors(cell))
+            .reduce(( x, y ) => x.concat(y), [])
+            .filter(cell => cell.x > -5 && cell.y > -5 && cell.x < this._cellsX + 5 && cell.y < this._cellsY + 5)
+            .map(cell => uniquefier[cell.asKey()] = cell);
+
+        Object.getOwnPropertyNames(uniquefier)
+              .forEach(key => {
+                  let cell = Cell.fromKey(key);
+
+                  let isAlive        = this.isAlive(cell);
+                  let numOfNeighbors = _numOfNeighbors(cell);
+                  let isTwo          = numOfNeighbors == 2;
+                  let isThree        = numOfNeighbors == 3;
+                  let isTwoOrThree   = isTwo || isThree;
+
+                  if ( (
+                           isAlive && isTwoOrThree
+                       ) || (
+                           isThree
+                       ) ) {
+                      newCells[cell.asKey()] = cell;
+                  }
+              });
+
+        this.clear();
+        for ( const key in newCells ) {
+            this.revive(Cell.fromKey(key));
+        }
+        this.draw();
+
+        if ( this._isPlaying ) {
+            window.requestAnimationFrame(() => grid.step());
+        }
+    }
+
+
+    public start() {
+        this._isPlaying = true;
+        this.step();
+    }
+
+
+    public stop() {
+        this._isPlaying = false;
     }
 
 
