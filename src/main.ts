@@ -66,7 +66,7 @@ window.onload = () => {
         gameStop();
     };
 
-    document.getElementById("#playPause").onclick = () => {
+    document.getElementById("playPause").onclick = () => {
         if ( grid.isPlaying ) {
             gameStop();
         } else {
