@@ -61,11 +61,13 @@ window.onload = () => {
 
     grid.setCanvas(document.querySelector("canvas"));
 
-    grid.canvas.onclick                          = () => {
+    grid.canvas.onclick                          = (e) => {
         grid.step();
+        //mouseclick position
         mx = e.offsetX;
         my = e.offsetY;
 
+        //calculate grid square numbers rounded to the nearest ten
         gx = Math.round(mx / CELL_SIZE); //*10;
         gy = Math.round(my / CELL_SIZE); //*10;
 
@@ -73,7 +75,7 @@ window.onload = () => {
         if(grid.isAlive(Cell.of(gx, gy))) {
             grid.kill(Cell.of(gx, gy));
 
-            //else revive or bring to life
+        //else revive or bring to life
         } else {
             grid.revive(Cell.of(gx, gy));
         }
