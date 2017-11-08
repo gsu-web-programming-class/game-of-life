@@ -7,13 +7,20 @@ export class Grid {
     private _cellSize: number;
     private _height: number;
     private _maxCells: number;
-    private _ctx: CanvasRenderingContext2D;
     private _width: number;
 
 
     constructor( maxCells: number, cellSize: number ) {
         this._maxCells = maxCells;
         this._cellSize = cellSize;
+    }
+
+
+    private _ctx: CanvasRenderingContext2D;
+
+
+    get ctx(): CanvasRenderingContext2D {
+        return this._ctx;
     }
 
 
