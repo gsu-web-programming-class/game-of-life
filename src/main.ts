@@ -16,8 +16,6 @@ const MAX_CELLS = MAX_SIZE / CELL_SIZE;
 let W: number, H: number;
 let CELLS_X: number, CELLS_Y: number;
 const grid: Grid = new Grid(MAX_CELLS, CELL_SIZE);
-let startStopBtn: HTMLButtonElement;
-let clearBtn: HTMLButtonElement;
 
 
 function refreshSize() {
@@ -59,16 +57,16 @@ function gameStop() {
 window.onload = () => {
     grid.setCanvas(document.querySelector("canvas"));
 
-    grid.canvas.onclick   = () => grid.step();
-    this.clearBtn         = document.querySelector("#clearBtn");
-    this.clearBtn.onclick = () => {
+    grid.canvas.onclick                         = () => {
+        grid.step();
+    };
+    document.getElementById("clearBtn").onclick = () => {
         grid.clear();
         grid.draw();
         gameStop();
     };
 
-    this.startStopBtn         = document.querySelector("#playPause");
-    this.startStopBtn.onclick = () => {
+    document.getElementById("#playPause").onclick = () => {
         if ( grid.isPlaying ) {
             gameStop();
         } else {
