@@ -84,27 +84,27 @@ window.onload = () => {
     };
     document.getElementById("loafItem").onclick    = () => {
         gameStop();
-        initCells("loaf");
+        initCells("loaf", false);
         grid.draw();
     };
     document.getElementById("toadItem").onclick    = () => {
         gameStop();
-        initCells("toad");
+        initCells("toad", false);
         grid.draw();
     };
     document.getElementById("beaconItem").onclick  = () => {
         gameStop();
-        initCells("beacon");
+        initCells("beacon", false);
         grid.draw();
     };
     document.getElementById("glidersItem").onclick = () => {
         gameStop();
-        initCells("gliders");
+        initCells("gliders", false);
         grid.draw();
     };
     document.getElementById("resetBtn").onclick    = () => {
         gameStop();
-        initCells();
+        initCells(lastPattern, false);
         grid.draw();
     };
     document.getElementById("step23Btn").onclick   = () => {
@@ -140,9 +140,11 @@ window.onload = () => {
 let lastPattern = "gliders";
 
 
-function initCells( pattern = lastPattern ) {
+function initCells( pattern = lastPattern, clear = true ) {
     lastPattern = pattern;
-    grid.clear();
+    if ( clear ) {
+        grid.clear();
+    }
 
     switch ( pattern ) {
         case "gliders":
