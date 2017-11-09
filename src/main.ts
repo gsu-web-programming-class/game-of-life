@@ -60,7 +60,7 @@ window.onload = () => {
 
     grid.setCanvas(document.querySelector("canvas"));
 
-    grid.canvas.onclick                          = ( e ) => {
+    grid.canvas.onclick                            = ( e ) => {
         //mouseclick position
         const mx = e.offsetX;
         const my = e.offsetY;
@@ -82,28 +82,48 @@ window.onload = () => {
             grid.draw();
         }
     };
-    document.getElementById("resetBtn").onclick  = () => {
+    document.getElementById("loafItem").onclick    = () => {
+        gameStop();
+        initCells("loaf");
+        grid.draw();
+    };
+    document.getElementById("toadItem").onclick    = () => {
+        gameStop();
+        initCells("toad");
+        grid.draw();
+    };
+    document.getElementById("beaconItem").onclick  = () => {
+        gameStop();
+        initCells("beacon");
+        grid.draw();
+    };
+    document.getElementById("glidersItem").onclick = () => {
+        gameStop();
+        initCells("gliders");
+        grid.draw();
+    };
+    document.getElementById("resetBtn").onclick    = () => {
         gameStop();
         initCells();
         grid.draw();
     };
-    document.getElementById("step23Btn").onclick = () => {
+    document.getElementById("step23Btn").onclick   = () => {
         gameStop();
         for ( let i = 0; i < 23; i++ ) {
             grid.step(false);
         }
         grid.draw();
     };
-    document.getElementById("stepBtn").onclick   = () => {
+    document.getElementById("stepBtn").onclick     = () => {
         gameStop();
         grid.step();
     };
-    document.getElementById("clearBtn").onclick  = () => {
+    document.getElementById("clearBtn").onclick    = () => {
         grid.clear();
         grid.draw();
         gameStop();
     };
-    document.getElementById("playPause").onclick = () => {
+    document.getElementById("playPause").onclick   = () => {
         if ( grid.isPlaying ) {
             gameStop();
         } else {
@@ -117,11 +137,27 @@ window.onload = () => {
     gameStop();
 };
 
+let lastPattern = "gliders";
 
-function initCells() {
+
+function initCells( pattern = lastPattern ) {
+    lastPattern = pattern;
     grid.clear();
 
-    Patterns.getGliderGuns(CELLS_X, CELLS_Y).forEach(cell => grid.revive(cell));
+    switch ( pattern ) {
+        case "gliders":
+            Patterns.getGliderGuns(CELLS_X, CELLS_Y).forEach(cell => grid.revive(cell));
+            break;
+        case "loaf":
+            Patterns.getLoaf(CELLS_X, CELLS_Y).forEach(cell => grid.revive(cell));
+            break;
+        case "toad":
+            Patterns.getToad(CELLS_X, CELLS_Y).forEach(cell => grid.revive(cell));
+            break;
+        case "beacon":
+            Patterns.getBeacon(CELLS_X, CELLS_Y).forEach(cell => grid.revive(cell));
+            break;
+    }
 
     // Patterns.hBar(CELLS_X, CELLS_Y).forEach(cell => grid.revive(cell));
 }

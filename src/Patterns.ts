@@ -165,4 +165,49 @@ export class Patterns {
         }
         return cells;
     }
+
+
+    static getLoaf( cellsX: number, cellsY: number ) {
+        let centerX = cellsX / 2;
+        let centerY = cellsY / 2;
+        return [
+            Cell.of(centerX - 1, centerY - 1),
+            Cell.of(centerX, centerY),
+            Cell.of(centerX + 1, centerY + 1),
+            Cell.of(centerX + 2, centerY - 1),
+            Cell.of(centerX + 2, centerY),
+            Cell.of(centerX + 1, centerY - 2),
+            Cell.of(centerX, centerY - 2),
+        ];
+    }
+
+
+    static getToad( cellsX: number, cellsY: number ) {
+        let centerX = cellsX / 2;
+        let centerY = cellsY / 2;
+        return [
+            Cell.of(centerX, centerY),
+            Cell.of(centerX + 1, centerY),
+            Cell.of(centerX + 2, centerY),
+            Cell.of(centerX - 1, centerY + 1),
+            Cell.of(centerX, centerY + 1),
+            Cell.of(centerX + 1, centerY + 1),
+        ];
+    }
+
+
+    static getBeacon( cellsX: number, cellsY: number ) {
+        let centerX = cellsX / 2;
+        let centerY = cellsY / 2;
+        return [
+            Cell.of(centerX - 1, centerY - 1),
+            Cell.of(centerX - 1, centerY),
+            Cell.of(centerX, centerY - 1),
+            Cell.of(centerX, centerY),
+            Cell.of(centerX + 1, centerY + 1),
+            Cell.of(centerX + 1, centerY + 2),
+            Cell.of(centerX + 2, centerY + 1),
+            Cell.of(centerX + 2, centerY + 2),
+        ];
+    }
 }

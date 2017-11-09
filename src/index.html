@@ -23,7 +23,7 @@
             position: absolute;
             right: 20px;
             bottom: 20px;
-            width: 200px;
+            width: 210px;
             text-align: center;
         }
 
@@ -36,6 +36,15 @@
         #controls:hover button:not(#playPause) {
             opacity: 1;
             transform: scale(1);
+        }
+
+        #controls:hover .mdl-menu__container {
+            opacity: 1;
+        }
+
+        #controls .mdl-menu__container {
+            transition: all 250ms ease;
+            opacity: 0;
         }
 
         #controls button:not(#playPause) {
@@ -57,14 +66,16 @@
     <!-- <input type="range" id="myRange" value="1" min="1" max="10"> -->
     <canvas ></canvas >
     <div id="controls" >
-        <button id="resetBtn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" >
-            <i class="material-icons" >restore</i >
+        <button id="stillLifeBtn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" >
+            <i class="material-icons" >add</i >
         </button >
-        <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="resetBtn" >
-            Restore all life
-            <br >
-            to original state
-        </div >
+        <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="stillLifeBtn" >Still life</div >
+        <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect" data-mdl-for="stillLifeBtn" >
+            <li id="loafItem" class="mdl-menu__item" >Loaf (Still Life)</li >
+            <li id="toadItem" class="mdl-menu__item" >Toad (Oscillator)</li >
+            <li id="beaconItem" class="mdl-menu__item" >Beacon (Oscillator)</li >
+            <li id="glidersItem" class="mdl-menu__item" >Glider Guns (Default)</li >
+        </ul >
         <button id="step23Btn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" >
             <i class="material-icons" >fast_forward</i >
         </button >
@@ -73,10 +84,18 @@
             <i class="material-icons" >skip_next</i >
         </button >
         <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="stepBtn" >Step 1</div >
+        <button id="resetBtn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" >
+            <i class="material-icons" >restore</i >
+        </button >
+        <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="resetBtn" >
+            Restore all life
+            <br >
+            to original state
+        </div >
         <button id="clearBtn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" >
             <i class="material-icons" >layers_clear</i >
         </button >
-        <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="clearBtn" >Clear all life</div >
+        <div class="mdl-tooltip mdl-tooltip--top" data-mdl-for="clearBtn" >Clear all life</div >
         <button id="playPause" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--primary" >
             <i hidden id="play-icon" class="material-icons" >play_arrow</i >
             <i id="pause-icon" class="material-icons" >pause</i >
