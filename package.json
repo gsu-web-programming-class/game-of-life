@@ -17,6 +17,7 @@
     "extends": "tslint.json"
   },
   "dependencies": {
+    "jquery" : "^3.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
